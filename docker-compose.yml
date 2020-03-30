@@ -1,0 +1,16 @@
+version: "2"
+services:
+  supernode-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "cd pb && make all"
+    volumes:
+      - ./:/supernode-api
+  supernode-api-swagger:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "cd swagger && make all"
+    volumes:
+      - ./:/supernode-api

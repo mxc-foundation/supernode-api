@@ -3,7 +3,6 @@ syntax = "proto3";
 package api;
 
 import "google/api/annotations.proto";
-import "internal.proto";
 
 service DSDeviceService {
     rpc GetDeviceList(GetDeviceListRequest) returns (GetDeviceListResponse){
@@ -48,7 +47,6 @@ message GetDeviceListRequest {
 message GetDeviceListResponse {
     repeated DSDeviceProfile dev_profile = 1;
     int64 count = 2;
-    ProfileResponse user_profile = 3;
 }
 
 message GetDSDeviceProfileRequest {
@@ -69,7 +67,6 @@ message DSDeviceProfile {
 
 message GetDSDeviceProfileResponse {
     DSDeviceProfile dev_profile = 1;
-    ProfileResponse user_profile = 3;
 }
 
 message GetDeviceHistoryRequest {
@@ -81,7 +78,6 @@ message GetDeviceHistoryRequest {
 
 message GetDeviceHistoryResponse {
     string dev_history = 1;
-    ProfileResponse user_profile = 2;
 }
 
 message SetDeviceModeRequest {
@@ -92,5 +88,4 @@ message SetDeviceModeRequest {
 
 message SetDeviceModeResponse {
     bool status = 1;
-    ProfileResponse user_profile = 3;
 }

@@ -1,0 +1,329 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "m2mserver_device.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/device/{orgId}/device-history/{devId}": {
+      "get": {
+        "operationId": "GetDeviceHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDeviceHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DSDeviceService"
+        ]
+      }
+    },
+    "/api/device/{orgId}/device-list": {
+      "get": {
+        "operationId": "GetDeviceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDeviceListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DSDeviceService"
+        ]
+      }
+    },
+    "/api/device/{orgId}/device-mode/{devId}": {
+      "post": {
+        "operationId": "SetDeviceMode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiSetDeviceModeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiSetDeviceModeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DSDeviceService"
+        ]
+      }
+    },
+    "/api/device/{orgId}/device-profile/{devId}": {
+      "get": {
+        "operationId": "GetDeviceProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDSDeviceProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DSDeviceService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiDSDeviceProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "devEui": {
+          "type": "string"
+        },
+        "fkWallet": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mode": {
+          "$ref": "#/definitions/apiDeviceMode"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "lastSeenAt": {
+          "type": "string"
+        },
+        "applicationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDeviceMode": {
+      "type": "string",
+      "enum": [
+        "DV_INACTIVE",
+        "DV_FREE_GATEWAYS_LIMITED",
+        "DV_WHOLE_NETWORK",
+        "DV_DELETED"
+      ],
+      "default": "DV_INACTIVE"
+    },
+    "apiGetDSDeviceProfileResponse": {
+      "type": "object",
+      "properties": {
+        "devProfile": {
+          "$ref": "#/definitions/apiDSDeviceProfile"
+        }
+      }
+    },
+    "apiGetDeviceHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "devHistory": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetDeviceListResponse": {
+      "type": "object",
+      "properties": {
+        "devProfile": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDSDeviceProfile"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiSetDeviceModeRequest": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "devId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "devMode": {
+          "$ref": "#/definitions/apiDeviceMode"
+        }
+      }
+    },
+    "apiSetDeviceModeResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

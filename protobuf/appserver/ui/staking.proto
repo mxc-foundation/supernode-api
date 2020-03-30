@@ -3,7 +3,6 @@ syntax = "proto3";
 package api;
 
 import "google/api/annotations.proto";
-import "internal.proto";
 
 service StakingService {
     rpc Stake (StakeRequest) returns (StakeResponse) {
@@ -46,7 +45,6 @@ message StakeRequest {
 
 message StakeResponse {
     string status = 1;
-    ProfileResponse user_profile = 2;
 }
 
 message UnstakeRequest {
@@ -55,7 +53,6 @@ message UnstakeRequest {
 
 message UnstakeResponse {
     string status = 1;
-    ProfileResponse user_profile = 2;
 }
 
 message GetActiveStakesRequest {
@@ -73,7 +70,6 @@ message ActiveStake {
 
 message GetActiveStakesResponse {
     ActiveStake act_stake = 1;
-    ProfileResponse user_profile = 2;
 }
 
 message StakingHistoryRequest {
@@ -94,9 +90,8 @@ message GetStakingHistory {
 }
 
 message StakingHistoryResponse {
-    ProfileResponse user_profile = 1;
-    repeated GetStakingHistory staking_hist = 2;
-    int64 count = 3;
+    repeated GetStakingHistory staking_hist = 1;
+    int64 count = 2;
 }
 
 message StakingPercentageRequest {

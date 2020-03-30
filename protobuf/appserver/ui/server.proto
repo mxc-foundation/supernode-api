@@ -3,15 +3,18 @@ syntax = "proto3";
 package api;
 
 import "google/api/annotations.proto";
-import "empty/empty.proto";
 
 service M2MServerInfoService {
     // get version
-    rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {
+    rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
         option(google.api.http) = {
             get: "/api/server-info/version"
         };
     };
+}
+
+message GetVersionRequest {
+
 }
 
 message GetVersionResponse {
