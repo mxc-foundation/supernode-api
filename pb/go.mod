@@ -1,4 +1,4 @@
-module github.com/mxc-foundation/supernode-api
+module github.com/mxc-foundation/supernode-api/pb
 
 go 1.13
 
