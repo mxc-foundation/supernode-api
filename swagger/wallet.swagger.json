@@ -1,0 +1,334 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "wallet.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/wallet/balance": {
+      "get": {
+        "operationId": "GetWalletBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetWalletBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "WalletService"
+        ]
+      }
+    },
+    "/api/wallet/{orgId}/downlink_price": {
+      "get": {
+        "operationId": "GetDlPrice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDownLinkPriceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "WalletService"
+        ]
+      }
+    },
+    "/api/wallet/{orgId}/tx-history": {
+      "get": {
+        "operationId": "GetVmxcTxHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetVmxcTxHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "WalletService"
+        ]
+      }
+    },
+    "/api/wallet/{orgId}/usage-history": {
+      "get": {
+        "operationId": "GetWalletUsageHist",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetWalletUsageHistResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "WalletService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiGetDownLinkPriceResponse": {
+      "type": "object",
+      "properties": {
+        "downLinkPrice": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiGetVmxcTxHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "txHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiVmxcTxHistory"
+          }
+        }
+      }
+    },
+    "apiGetWalletBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiGetWalletUsageHist": {
+      "type": "object",
+      "properties": {
+        "StartAt": {
+          "type": "string"
+        },
+        "DurationMinutes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DlCntDv": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DlCntDvFree": {
+          "type": "string",
+          "format": "int64"
+        },
+        "UlCntDv": {
+          "type": "string",
+          "format": "int64"
+        },
+        "UlCntDvFree": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DlCntGw": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DlCntGwFree": {
+          "type": "string",
+          "format": "int64"
+        },
+        "UlCntGw": {
+          "type": "string",
+          "format": "int64"
+        },
+        "UlCntGwFree": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Spend": {
+          "type": "number",
+          "format": "double"
+        },
+        "Income": {
+          "type": "number",
+          "format": "double"
+        },
+        "UpdatedBalance": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiGetWalletUsageHistResponse": {
+      "type": "object",
+      "properties": {
+        "walletUsageHis": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGetWalletUsageHist"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiVmxcTxHistory": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "txType": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
