@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package m2m;
+
+service MiningService {
+    rpc Mining (MiningRequest) returns (MiningResponse);
+}
+
+// MiningRequest sends gateway list to m2m
+message MiningRequest {
+    repeated string gateway_mac = 1;
+    double mining_revenue = 2;
+    double mxc_price = 3;
+}
+
+message MiningResponse {
+    bool status = 1;
+}

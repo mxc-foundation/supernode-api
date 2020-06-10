@@ -1,0 +1,159 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "lpwan-app-server/ui/settings.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/settings": {
+      "get": {
+        "operationId": "GetSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiGetSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "SettingsService"
+        ]
+      },
+      "put": {
+        "operationId": "ModifySettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiModifySettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uiModifySettingsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SettingsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "uiGetSettingsResponse": {
+      "type": "object",
+      "properties": {
+        "lowBalanceWarning": {
+          "type": "string",
+          "title": "when supernode income is lower than expected revenue, warn system owner to increase income"
+        },
+        "downlinkPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "supernodeIncomeRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "stakingPercentage": {
+          "type": "number",
+          "format": "double",
+          "title": "this is the percentage of reward from supernode income"
+        },
+        "stakingExpectedRevenuePercentage": {
+          "type": "number",
+          "format": "double",
+          "title": "this is the percentage of expected reward from staking amount"
+        },
+        "compensation": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "uiModifySettingsRequest": {
+      "type": "object",
+      "properties": {
+        "lowBalanceWarning": {
+          "type": "string",
+          "format": "int64"
+        },
+        "downlinkFee": {
+          "type": "string",
+          "format": "int64"
+        },
+        "transactionPercentageShare": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "uiModifySettingsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    }
+  }
+}

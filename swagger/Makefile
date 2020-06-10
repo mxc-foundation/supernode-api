@@ -1,15 +1,11 @@
-.PHONY: requirements appserver_ui
+.PHONY: all requirements
 
-GRPC_GW_PATH := $(shell go list -f '{{ .Dir }}' github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway)
-GOOGLEAPIS_PATH := "$(GRPC_GW_PATH)/../third_party/googleapis"
-
-all: requirements appserver_ui
+all: requirements
+	@mkdir -p api
+	@./gen.sh
 
 requirements:
 	@go mod download
 	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-
-appserver_ui:
-	@./gen.sh
 
