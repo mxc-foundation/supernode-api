@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package srvinfo;
+
+import "google/protobuf/empty.proto";
+
+service M2MServerInfoService {
+    // get version
+    rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse);
+}
+
+message GetVersionResponse {
+    string version = 1;
+}
