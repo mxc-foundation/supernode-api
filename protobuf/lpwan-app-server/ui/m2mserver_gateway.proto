@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package m2mgw;
+package ui;
 
 import "google/api/annotations.proto";
-import "internal.proto";
+import "lpwan-app-server/ui/internal.proto";
 
-service GatewayService {
+service GSGatewayService {
     rpc GetGatewayList(GetGatewayListRequest) returns (GetGatewayListResponse){
         option(google.api.http) = {
 			get: "/api/gateway/{org_id}/gateway-list"

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package internal;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";
 import "empty/empty.proto";
-import "user.proto";
+import "lpwan-app-server/ui/user.proto";
 
 
 // InternalService is the service providing API endpoints for internal usage.

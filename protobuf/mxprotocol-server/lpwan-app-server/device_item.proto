@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package device;
+package m2m;
+
+import "timestamp/timestamp.proto";
 
 service DSDeviceService {
     rpc GetDeviceList(GetDeviceListRequest) returns (GetDeviceListResponse);

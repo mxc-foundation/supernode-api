@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package mining;
+package m2m;
 
 service MiningService {
     rpc Mining (MiningRequest) returns (MiningResponse);

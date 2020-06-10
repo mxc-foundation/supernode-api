@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package fuota;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";
 import "duration/duration.proto";
-import "multicastGroup.proto";
+import "lpwan-app-server/ui/multicast_group.proto";
 
 // FUOTADeploymentService is the service managing FUOTA deployments.
 service FUOTADeploymentService {

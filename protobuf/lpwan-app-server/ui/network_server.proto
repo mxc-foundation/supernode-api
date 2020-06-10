@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package networkserver;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package profiles;
+package ui;
 
 enum RatePolicy {
     // Drop

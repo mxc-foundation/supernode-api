@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package staking;
+package ui;
 
 import "google/api/annotations.proto";
-import "internal.proto";
+import "lpwan-app-server/ui/internal.proto";
 
 service StakingService {
     rpc Stake (StakeRequest) returns (StakeResponse) {

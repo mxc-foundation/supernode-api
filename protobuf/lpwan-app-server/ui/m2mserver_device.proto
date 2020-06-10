@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package m2mdev;
+package ui;
 
 import "google/api/annotations.proto";
-import "internal.proto";
+import "lpwan-app-server/ui/internal.proto";
 
-service DeviceService {
+service DSDeviceService {
     rpc GetDeviceList(GetDeviceListRequest) returns (GetDeviceListResponse){
         option(google.api.http) = {
 			get: "/api/device/{org_id}/device-list"

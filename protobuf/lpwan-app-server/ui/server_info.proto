@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package serverinfo;
+package ui;
 
 import "google/api/annotations.proto";
 import "empty/empty.proto";

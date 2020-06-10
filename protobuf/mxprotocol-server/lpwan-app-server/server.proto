@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package srvinfo;
+package m2m;
 
 import "google/protobuf/empty.proto";
 

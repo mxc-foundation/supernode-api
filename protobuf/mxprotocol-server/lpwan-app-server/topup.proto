@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package topup;
+package m2m;
 
 service TopUpService {
     rpc GetTopUpHistory(GetTopUpHistoryRequest) returns (GetTopUpHistoryResponse);

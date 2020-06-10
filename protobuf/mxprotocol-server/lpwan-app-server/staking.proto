@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package staking;
+package m2m;
 
 service StakingService {
     rpc Stake (StakeRequest) returns (StakeResponse);

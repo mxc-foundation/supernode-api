@@ -1,17 +1,28 @@
-.PHONY: requirements appserver_ui m2m_appserver m2m_networkserver
+.PHONY: all gen requirements lpwan-app-server lpwan-server mxprotocol-server
 
-all: requirements appserver_ui m2m_appserver m2m_networkserver
+all: requirements lpwan-app-server lpwan-server mxprotocol-server
+	@echo "Build APIs"
+	@./gen.sh
 
 requirements:
 	@go mod download
 	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 	@go install github.com/golang/protobuf/protoc-gen-go
 
-appserver_ui:
-	@cd appserver/ui && ./gen.sh
+lpwan-app-server:
+	@mkdir -p lpwan-app-server/gateway
+	@mkdir -p lpwan-app-server/lpwan-server
+	@mkdir -p lpwan-app-server/mxprotocol-server
+	@mkdir -p lpwan-app-server/ui
 
-m2m_appserver:
-	@cd m2m-server/appserver && ./gen.sh
+lpwan-server:
+	@mkdir -p lpwan-server/common
+	@mkdir -p lpwan-server/geo
+	@mkdir -p lpwan-server/gw
+	@mkdir -p lpwan-server/nc
+	@mkdir -p lpwan-server/ns
 
-m2m_networkserver:
-	@cd m2m-server/network-server && ./gen.sh
+mxprotocol-server:
+	@mkdir -p mxprotocol-server/lpwan-app-server
+	@mkdir -p mxprotocol-server/lpwan-app-server/lpwan-server
+

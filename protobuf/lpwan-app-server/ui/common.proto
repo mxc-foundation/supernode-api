@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package common;
+package ui;
 
 // from loraserver
-import "api/common/common.proto";
-import "api/gw/gw.proto";
+import "lpwan-server/common/common.proto";
+import "lpwan-server/gw/gw.proto";
 import "timestamp/timestamp.proto";
 import "duration/duration.proto";
 

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package organization;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";

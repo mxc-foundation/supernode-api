@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package devprofile;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";
 import "empty/empty.proto";
 
 // profiles
-import "profiles.proto";
+import "lpwan-app-server/ui/profiles.proto";
 
 // DeviceProfileService is the service managing device-profiles.
 service DeviceProfileService {

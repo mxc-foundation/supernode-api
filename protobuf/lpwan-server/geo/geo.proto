@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package geo;
 
-import "api/gw/gw.proto";
-import "api/common/common.proto";
+import "lpwan-server/gw/gw.proto";
+import "lpwan-server/common/common.proto";
 
 
 // GeolocationServerService implements a geolocation-server service.

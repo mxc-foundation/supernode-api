@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package gwprofile;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";
 import "empty/empty.proto";
 
 // from loraserver
-import "api/common/common.proto";
+import "lpwan-server/common/common.proto";
 
 
 // GatewayProfileService is the service managing the gateway-profiles.

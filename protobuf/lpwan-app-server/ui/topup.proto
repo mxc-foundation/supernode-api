@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package topup;
+package ui;
 
 
 import "google/api/annotations.proto";

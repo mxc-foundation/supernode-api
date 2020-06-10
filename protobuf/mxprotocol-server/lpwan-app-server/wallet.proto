@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package wallet;
+package m2m;
 
 service WalletService {
     rpc GetWalletBalance (GetWalletBalanceRequest) returns (GetWalletBalanceResponse);

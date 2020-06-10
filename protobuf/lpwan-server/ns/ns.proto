@@ -4,9 +4,9 @@ package ns;
 
 import "timestamp/timestamp.proto";
 import "empty/empty.proto";
-import "api/common/common.proto";
-import "api/gw/gw.proto";
-import "profiles.proto";
+import "lpwan-server/common/common.proto";
+import "lpwan-server/gw/gw.proto";
+import "lpwan-server/ns/profiles.proto";
 
 
 // NetworkServerService provides the network-server API methods.

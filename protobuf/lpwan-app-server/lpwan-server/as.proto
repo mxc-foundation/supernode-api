@@ -4,8 +4,8 @@ package as;
 
 import "empty/empty.proto";
 import "timestamp/timestamp.proto";
-import "api/common/common.proto";
-import "api/gw/gw.proto";
+import "lpwan-server/common/common.proto";
+import "lpwan-server/gw/gw.proto";
 
 
 // ApplicationServerService is the service providing the application-server interface.

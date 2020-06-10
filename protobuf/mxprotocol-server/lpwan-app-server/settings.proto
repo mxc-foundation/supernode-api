@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package settings;
+package m2m;
 import "google/protobuf/wrappers.proto";
 
 // SettingsService is the service managing system settings.

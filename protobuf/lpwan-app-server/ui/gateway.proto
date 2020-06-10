@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package gateway;
+package ui;
 
 import "google/api/annotations.proto";
 import "timestamp/timestamp.proto";
 import "empty/empty.proto";
-import "common.proto";
+import "lpwan-app-server/ui/common.proto";
 
 // from loraserver
-import "api/common/common.proto";
+import "lpwan-server/common/common.proto";
 
 
 // GatewayService is the service managing the gateways.
