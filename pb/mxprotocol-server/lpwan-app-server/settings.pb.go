@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -414,6 +416,20 @@ type SettingsServiceServer interface {
 	GetSettings(context.Context, *GetSettingsRequest) (*GetSettingsResponse, error)
 	ModifySettings(context.Context, *ModifySettingsRequest) (*ModifySettingsResponse, error)
 	ExecCompensation(context.Context, *ExecCompensationRequest) (*ExecCompensationResponse, error)
+}
+
+// UnimplementedSettingsServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedSettingsServiceServer struct {
+}
+
+func (*UnimplementedSettingsServiceServer) GetSettings(ctx context.Context, req *GetSettingsRequest) (*GetSettingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSettings not implemented")
+}
+func (*UnimplementedSettingsServiceServer) ModifySettings(ctx context.Context, req *ModifySettingsRequest) (*ModifySettingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ModifySettings not implemented")
+}
+func (*UnimplementedSettingsServiceServer) ExecCompensation(ctx context.Context, req *ExecCompensationRequest) (*ExecCompensationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecCompensation not implemented")
 }
 
 func RegisterSettingsServiceServer(s *grpc.Server, srv SettingsServiceServer) {

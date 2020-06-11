@@ -11,6 +11,8 @@ import (
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1274,7 +1276,9 @@ func init() {
 	proto.RegisterType((*GetRecoveryCodesResponse)(nil), "ui.GetRecoveryCodesResponse")
 }
 
-func init() { proto.RegisterFile("lpwan-app-server/ui/internal.proto", fileDescriptor_af4633894bd93ab0) }
+func init() {
+	proto.RegisterFile("lpwan-app-server/ui/internal.proto", fileDescriptor_af4633894bd93ab0)
+}
 
 var fileDescriptor_af4633894bd93ab0 = []byte{
 	// 1626 bytes of a gzipped FileDescriptorProto
@@ -1557,6 +1561,50 @@ type InternalServiceServer interface {
 	EnableTOTP(context.Context, *TOTPStatusRequest) (*TOTPStatusResponse, error)
 	DisableTOTP(context.Context, *TOTPStatusRequest) (*TOTPStatusResponse, error)
 	GetRecoveryCodes(context.Context, *GetRecoveryCodesRequest) (*GetRecoveryCodesResponse, error)
+}
+
+// UnimplementedInternalServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedInternalServiceServer struct {
+}
+
+func (*UnimplementedInternalServiceServer) Login(ctx context.Context, req *LoginRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (*UnimplementedInternalServiceServer) Profile(ctx context.Context, req *empty.Empty) (*ProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Profile not implemented")
+}
+func (*UnimplementedInternalServiceServer) Branding(ctx context.Context, req *empty.Empty) (*BrandingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Branding not implemented")
+}
+func (*UnimplementedInternalServiceServer) GlobalSearch(ctx context.Context, req *GlobalSearchRequest) (*GlobalSearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GlobalSearch not implemented")
+}
+func (*UnimplementedInternalServiceServer) RegisterUser(ctx context.Context, req *RegisterUserRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
+}
+func (*UnimplementedInternalServiceServer) ConfirmRegistration(ctx context.Context, req *ConfirmRegistrationRequest) (*ConfirmRegistrationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmRegistration not implemented")
+}
+func (*UnimplementedInternalServiceServer) FinishRegistration(ctx context.Context, req *FinishRegistrationRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinishRegistration not implemented")
+}
+func (*UnimplementedInternalServiceServer) GetVerifyingGoogleRecaptcha(ctx context.Context, req *GoogleRecaptchaRequest) (*GoogleRecaptchaResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVerifyingGoogleRecaptcha not implemented")
+}
+func (*UnimplementedInternalServiceServer) GetTOTPStatus(ctx context.Context, req *TOTPStatusRequest) (*TOTPStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTOTPStatus not implemented")
+}
+func (*UnimplementedInternalServiceServer) GetTOTPConfiguration(ctx context.Context, req *GetTOTPConfigurationRequest) (*GetTOTPConfigurationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTOTPConfiguration not implemented")
+}
+func (*UnimplementedInternalServiceServer) EnableTOTP(ctx context.Context, req *TOTPStatusRequest) (*TOTPStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableTOTP not implemented")
+}
+func (*UnimplementedInternalServiceServer) DisableTOTP(ctx context.Context, req *TOTPStatusRequest) (*TOTPStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableTOTP not implemented")
+}
+func (*UnimplementedInternalServiceServer) GetRecoveryCodes(ctx context.Context, req *GetRecoveryCodesRequest) (*GetRecoveryCodesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRecoveryCodes not implemented")
 }
 
 func RegisterInternalServiceServer(s *grpc.Server, srv InternalServiceServer) {

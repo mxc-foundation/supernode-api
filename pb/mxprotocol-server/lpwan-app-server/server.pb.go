@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -122,6 +124,14 @@ func (c *m2MServerInfoServiceClient) GetVersion(ctx context.Context, in *empty.E
 type M2MServerInfoServiceServer interface {
 	// get version
 	GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error)
+}
+
+// UnimplementedM2MServerInfoServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedM2MServerInfoServiceServer struct {
+}
+
+func (*UnimplementedM2MServerInfoServiceServer) GetVersion(ctx context.Context, req *empty.Empty) (*GetVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
 }
 
 func RegisterM2MServerInfoServiceServer(s *grpc.Server, srv M2MServerInfoServiceServer) {

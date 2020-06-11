@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -771,6 +773,23 @@ type M2MServerServiceServer interface {
 	GwUsageMode(context.Context, *GwUsageModeRequest) (*GwUsageModeResponse, error)
 	DlPktSent(context.Context, *DlPktSentRequest) (*DlPktSentResponse, error)
 	UlPktSent(context.Context, *UlPktSentRequest) (*UlPktSentResponse, error)
+}
+
+// UnimplementedM2MServerServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedM2MServerServiceServer struct {
+}
+
+func (*UnimplementedM2MServerServiceServer) DvUsageMode(ctx context.Context, req *DvUsageModeRequest) (*DvUsageModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DvUsageMode not implemented")
+}
+func (*UnimplementedM2MServerServiceServer) GwUsageMode(ctx context.Context, req *GwUsageModeRequest) (*GwUsageModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GwUsageMode not implemented")
+}
+func (*UnimplementedM2MServerServiceServer) DlPktSent(ctx context.Context, req *DlPktSentRequest) (*DlPktSentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DlPktSent not implemented")
+}
+func (*UnimplementedM2MServerServiceServer) UlPktSent(ctx context.Context, req *UlPktSentRequest) (*UlPktSentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UlPktSent not implemented")
 }
 
 func RegisterM2MServerServiceServer(s *grpc.Server, srv M2MServerServiceServer) {

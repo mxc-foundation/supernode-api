@@ -10,6 +10,8 @@ import (
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -305,6 +307,17 @@ func (c *gatewayServiceClient) GetGatewayMacList(ctx context.Context, in *empty.
 type GatewayServiceServer interface {
 	GetGatewayByMac(context.Context, *GetGatewayByMacRequest) (*GetGatewayByMacResponse, error)
 	GetGatewayMacList(context.Context, *empty.Empty) (*GetGatewayMacListResponse, error)
+}
+
+// UnimplementedGatewayServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedGatewayServiceServer struct {
+}
+
+func (*UnimplementedGatewayServiceServer) GetGatewayByMac(ctx context.Context, req *GetGatewayByMacRequest) (*GetGatewayByMacResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayByMac not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetGatewayMacList(ctx context.Context, req *empty.Empty) (*GetGatewayMacListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayMacList not implemented")
 }
 
 func RegisterGatewayServiceServer(s *grpc.Server, srv GatewayServiceServer) {

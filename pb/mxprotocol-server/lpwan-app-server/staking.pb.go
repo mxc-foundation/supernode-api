@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -760,6 +762,26 @@ type StakingServiceServer interface {
 	GetActiveStakes(context.Context, *GetActiveStakesRequest) (*GetActiveStakesResponse, error)
 	GetStakingHistory(context.Context, *StakingHistoryRequest) (*StakingHistoryResponse, error)
 	GetStakingPercentage(context.Context, *StakingPercentageRequest) (*StakingPercentageResponse, error)
+}
+
+// UnimplementedStakingServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedStakingServiceServer struct {
+}
+
+func (*UnimplementedStakingServiceServer) Stake(ctx context.Context, req *StakeRequest) (*StakeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Stake not implemented")
+}
+func (*UnimplementedStakingServiceServer) Unstake(ctx context.Context, req *UnstakeRequest) (*UnstakeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unstake not implemented")
+}
+func (*UnimplementedStakingServiceServer) GetActiveStakes(ctx context.Context, req *GetActiveStakesRequest) (*GetActiveStakesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetActiveStakes not implemented")
+}
+func (*UnimplementedStakingServiceServer) GetStakingHistory(ctx context.Context, req *StakingHistoryRequest) (*StakingHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStakingHistory not implemented")
+}
+func (*UnimplementedStakingServiceServer) GetStakingPercentage(ctx context.Context, req *StakingPercentageRequest) (*StakingPercentageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStakingPercentage not implemented")
 }
 
 func RegisterStakingServiceServer(s *grpc.Server, srv StakingServiceServer) {

@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1150,6 +1152,32 @@ type WalletServiceServer interface {
 	GetWalletMiningIncome(context.Context, *GetWalletMiningIncomeRequest) (*GetWalletMiningIncomeResponse, error)
 	GetMiningInfo(context.Context, *GetMiningInfoRequest) (*GetMiningInfoResponse, error)
 	GetMXCprice(context.Context, *GetMXCpriceRequest) (*GetMXCpriceResponse, error)
+}
+
+// UnimplementedWalletServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedWalletServiceServer struct {
+}
+
+func (*UnimplementedWalletServiceServer) GetWalletBalance(ctx context.Context, req *GetWalletBalanceRequest) (*GetWalletBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWalletBalance not implemented")
+}
+func (*UnimplementedWalletServiceServer) GetVmxcTxHistory(ctx context.Context, req *GetVmxcTxHistoryRequest) (*GetVmxcTxHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVmxcTxHistory not implemented")
+}
+func (*UnimplementedWalletServiceServer) GetWalletUsageHist(ctx context.Context, req *GetWalletUsageHistRequest) (*GetWalletUsageHistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWalletUsageHist not implemented")
+}
+func (*UnimplementedWalletServiceServer) GetDlPrice(ctx context.Context, req *GetDownLinkPriceRequest) (*GetDownLinkPriceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDlPrice not implemented")
+}
+func (*UnimplementedWalletServiceServer) GetWalletMiningIncome(ctx context.Context, req *GetWalletMiningIncomeRequest) (*GetWalletMiningIncomeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWalletMiningIncome not implemented")
+}
+func (*UnimplementedWalletServiceServer) GetMiningInfo(ctx context.Context, req *GetMiningInfoRequest) (*GetMiningInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMiningInfo not implemented")
+}
+func (*UnimplementedWalletServiceServer) GetMXCprice(ctx context.Context, req *GetMXCpriceRequest) (*GetMXCpriceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMXCprice not implemented")
 }
 
 func RegisterWalletServiceServer(s *grpc.Server, srv WalletServiceServer) {

@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -926,6 +928,29 @@ type DSDeviceServiceServer interface {
 	SetDeviceMode(context.Context, *SetDeviceModeRequest) (*SetDeviceModeResponse, error)
 	AddDevice(context.Context, *AddDeviceRequest) (*AddDeviceResponse, error)
 	DeleteDevice(context.Context, *DeleteDeviceRequest) (*DeleteDeviceResponse, error)
+}
+
+// UnimplementedDSDeviceServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedDSDeviceServiceServer struct {
+}
+
+func (*UnimplementedDSDeviceServiceServer) GetDeviceList(ctx context.Context, req *GetDeviceListRequest) (*GetDeviceListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceList not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) GetDeviceProfile(ctx context.Context, req *GetDSDeviceProfileRequest) (*GetDSDeviceProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceProfile not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) GetDeviceHistory(ctx context.Context, req *GetDeviceHistoryRequest) (*GetDeviceHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceHistory not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) SetDeviceMode(ctx context.Context, req *SetDeviceModeRequest) (*SetDeviceModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceMode not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) AddDevice(ctx context.Context, req *AddDeviceRequest) (*AddDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddDevice not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) DeleteDevice(ctx context.Context, req *DeleteDeviceRequest) (*DeleteDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDevice not implemented")
 }
 
 func RegisterDSDeviceServiceServer(s *grpc.Server, srv DSDeviceServiceServer) {

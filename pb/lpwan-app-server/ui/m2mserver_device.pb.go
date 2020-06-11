@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -703,6 +705,23 @@ type DSDeviceServiceServer interface {
 	GetDeviceProfile(context.Context, *GetDSDeviceProfileRequest) (*GetDSDeviceProfileResponse, error)
 	GetDeviceHistory(context.Context, *GetDeviceHistoryRequest) (*GetDeviceHistoryResponse, error)
 	SetDeviceMode(context.Context, *SetDeviceModeRequest) (*SetDeviceModeResponse, error)
+}
+
+// UnimplementedDSDeviceServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedDSDeviceServiceServer struct {
+}
+
+func (*UnimplementedDSDeviceServiceServer) GetDeviceList(ctx context.Context, req *GetDeviceListRequest) (*GetDeviceListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceList not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) GetDeviceProfile(ctx context.Context, req *GetDSDeviceProfileRequest) (*GetDSDeviceProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceProfile not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) GetDeviceHistory(ctx context.Context, req *GetDeviceHistoryRequest) (*GetDeviceHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceHistory not implemented")
+}
+func (*UnimplementedDSDeviceServiceServer) SetDeviceMode(ctx context.Context, req *SetDeviceModeRequest) (*SetDeviceModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDeviceMode not implemented")
 }
 
 func RegisterDSDeviceServiceServer(s *grpc.Server, srv DSDeviceServiceServer) {

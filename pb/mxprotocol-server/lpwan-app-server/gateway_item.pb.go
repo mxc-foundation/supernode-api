@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -968,6 +970,29 @@ type GSGatewayServiceServer interface {
 	SetGatewayMode(context.Context, *SetGatewayModeRequest) (*SetGatewayModeResponse, error)
 	AddGateway(context.Context, *AddGatewayRequest) (*AddGatewayResponse, error)
 	DeleteGateway(context.Context, *DeleteGatewayRequest) (*DeleteGatewayResponse, error)
+}
+
+// UnimplementedGSGatewayServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedGSGatewayServiceServer struct {
+}
+
+func (*UnimplementedGSGatewayServiceServer) GetGatewayList(ctx context.Context, req *GetGatewayListRequest) (*GetGatewayListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayList not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) GetGatewayProfile(ctx context.Context, req *GetGSGatewayProfileRequest) (*GetGSGatewayProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayProfile not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) GetGatewayHistory(ctx context.Context, req *GetGatewayHistoryRequest) (*GetGatewayHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayHistory not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) SetGatewayMode(ctx context.Context, req *SetGatewayModeRequest) (*SetGatewayModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetGatewayMode not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) AddGateway(ctx context.Context, req *AddGatewayRequest) (*AddGatewayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddGateway not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) DeleteGateway(ctx context.Context, req *DeleteGatewayRequest) (*DeleteGatewayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteGateway not implemented")
 }
 
 func RegisterGSGatewayServiceServer(s *grpc.Server, srv GSGatewayServiceServer) {

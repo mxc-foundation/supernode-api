@@ -584,7 +584,9 @@ func init() {
 	proto.RegisterType((*DeviceProfile)(nil), "ui.DeviceProfile")
 }
 
-func init() { proto.RegisterFile("lpwan-app-server/ui/profiles.proto", fileDescriptor_8e2506c4f3f1e3a7) }
+func init() {
+	proto.RegisterFile("lpwan-app-server/ui/profiles.proto", fileDescriptor_8e2506c4f3f1e3a7)
+}
 
 var fileDescriptor_8e2506c4f3f1e3a7 = []byte{
 	// 1033 bytes of a gzipped FileDescriptorProto

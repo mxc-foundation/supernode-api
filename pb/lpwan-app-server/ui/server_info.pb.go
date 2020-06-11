@@ -10,6 +10,8 @@ import (
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -266,6 +268,20 @@ type ServerInfoServiceServer interface {
 	GetAppserverVersion(context.Context, *empty.Empty) (*GetAppserverVersionResponse, error)
 	GetM2MServerVersion(context.Context, *empty.Empty) (*GetM2MServerVersionResponse, error)
 	GetServerRegion(context.Context, *empty.Empty) (*GetServerRegionResponse, error)
+}
+
+// UnimplementedServerInfoServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedServerInfoServiceServer struct {
+}
+
+func (*UnimplementedServerInfoServiceServer) GetAppserverVersion(ctx context.Context, req *empty.Empty) (*GetAppserverVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppserverVersion not implemented")
+}
+func (*UnimplementedServerInfoServiceServer) GetM2MServerVersion(ctx context.Context, req *empty.Empty) (*GetM2MServerVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetM2MServerVersion not implemented")
+}
+func (*UnimplementedServerInfoServiceServer) GetServerRegion(ctx context.Context, req *empty.Empty) (*GetServerRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetServerRegion not implemented")
 }
 
 func RegisterServerInfoServiceServer(s *grpc.Server, srv ServerInfoServiceServer) {

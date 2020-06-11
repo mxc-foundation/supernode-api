@@ -10,6 +10,8 @@ import (
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -297,6 +299,17 @@ func (c *deviceServiceClient) GetDeviceDevEuiList(ctx context.Context, in *empty
 type DeviceServiceServer interface {
 	GetDeviceByDevEui(context.Context, *GetDeviceByDevEuiRequest) (*GetDeviceByDevEuiResponse, error)
 	GetDeviceDevEuiList(context.Context, *empty.Empty) (*GetDeviceDevEuiListResponse, error)
+}
+
+// UnimplementedDeviceServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedDeviceServiceServer struct {
+}
+
+func (*UnimplementedDeviceServiceServer) GetDeviceByDevEui(ctx context.Context, req *GetDeviceByDevEuiRequest) (*GetDeviceByDevEuiResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceByDevEui not implemented")
+}
+func (*UnimplementedDeviceServiceServer) GetDeviceDevEuiList(ctx context.Context, req *empty.Empty) (*GetDeviceDevEuiListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceDevEuiList not implemented")
 }
 
 func RegisterDeviceServiceServer(s *grpc.Server, srv DeviceServiceServer) {

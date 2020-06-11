@@ -10,6 +10,8 @@ import (
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -238,7 +240,9 @@ func init() {
 	proto.RegisterType((*ModifySettingsResponse)(nil), "ui.ModifySettingsResponse")
 }
 
-func init() { proto.RegisterFile("lpwan-app-server/ui/settings.proto", fileDescriptor_89f82689bef70059) }
+func init() {
+	proto.RegisterFile("lpwan-app-server/ui/settings.proto", fileDescriptor_89f82689bef70059)
+}
 
 var fileDescriptor_89f82689bef70059 = []byte{
 	// 489 bytes of a gzipped FileDescriptorProto
@@ -321,6 +325,17 @@ func (c *settingsServiceClient) ModifySettings(ctx context.Context, in *ModifySe
 type SettingsServiceServer interface {
 	GetSettings(context.Context, *GetSettingsRequest) (*GetSettingsResponse, error)
 	ModifySettings(context.Context, *ModifySettingsRequest) (*ModifySettingsResponse, error)
+}
+
+// UnimplementedSettingsServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedSettingsServiceServer struct {
+}
+
+func (*UnimplementedSettingsServiceServer) GetSettings(ctx context.Context, req *GetSettingsRequest) (*GetSettingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSettings not implemented")
+}
+func (*UnimplementedSettingsServiceServer) ModifySettings(ctx context.Context, req *ModifySettingsRequest) (*ModifySettingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ModifySettings not implemented")
 }
 
 func RegisterSettingsServiceServer(s *grpc.Server, srv SettingsServiceServer) {

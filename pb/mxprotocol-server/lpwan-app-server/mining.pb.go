@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -179,6 +181,14 @@ func (c *miningServiceClient) Mining(ctx context.Context, in *MiningRequest, opt
 // MiningServiceServer is the server API for MiningService service.
 type MiningServiceServer interface {
 	Mining(context.Context, *MiningRequest) (*MiningResponse, error)
+}
+
+// UnimplementedMiningServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedMiningServiceServer struct {
+}
+
+func (*UnimplementedMiningServiceServer) Mining(ctx context.Context, req *MiningRequest) (*MiningResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Mining not implemented")
 }
 
 func RegisterMiningServiceServer(s *grpc.Server, srv MiningServiceServer) {

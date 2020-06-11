@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -736,6 +738,23 @@ type GSGatewayServiceServer interface {
 	GetGatewayProfile(context.Context, *GetGSGatewayProfileRequest) (*GetGSGatewayProfileResponse, error)
 	GetGatewayHistory(context.Context, *GetGatewayHistoryRequest) (*GetGatewayHistoryResponse, error)
 	SetGatewayMode(context.Context, *SetGatewayModeRequest) (*SetGatewayModeResponse, error)
+}
+
+// UnimplementedGSGatewayServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedGSGatewayServiceServer struct {
+}
+
+func (*UnimplementedGSGatewayServiceServer) GetGatewayList(ctx context.Context, req *GetGatewayListRequest) (*GetGatewayListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayList not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) GetGatewayProfile(ctx context.Context, req *GetGSGatewayProfileRequest) (*GetGSGatewayProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayProfile not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) GetGatewayHistory(ctx context.Context, req *GetGatewayHistoryRequest) (*GetGatewayHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayHistory not implemented")
+}
+func (*UnimplementedGSGatewayServiceServer) SetGatewayMode(ctx context.Context, req *SetGatewayModeRequest) (*SetGatewayModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetGatewayMode not implemented")
 }
 
 func RegisterGSGatewayServiceServer(s *grpc.Server, srv GSGatewayServiceServer) {

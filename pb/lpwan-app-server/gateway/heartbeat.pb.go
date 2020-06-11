@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -206,6 +208,14 @@ func (c *heartbeatServiceClient) Heartbeat(ctx context.Context, in *HeartbeatReq
 // HeartbeatServiceServer is the server API for HeartbeatService service.
 type HeartbeatServiceServer interface {
 	Heartbeat(context.Context, *HeartbeatRequest) (*HeartbeatResponse, error)
+}
+
+// UnimplementedHeartbeatServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedHeartbeatServiceServer struct {
+}
+
+func (*UnimplementedHeartbeatServiceServer) Heartbeat(ctx context.Context, req *HeartbeatRequest) (*HeartbeatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Heartbeat not implemented")
 }
 
 func RegisterHeartbeatServiceServer(s *grpc.Server, srv HeartbeatServiceServer) {

@@ -12,6 +12,8 @@ import (
 	common "github.com/mxc-foundation/lpwan-server/api/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -2128,6 +2130,53 @@ type GatewayServiceServer interface {
 	UpdateGwConfig(context.Context, *UpdateGwConfigRequest) (*UpdateGwConfigResponse, error)
 	GetGwPwd(context.Context, *GetGwPwdRequest) (*GetGwPwdResponse, error)
 	SetAutoUpdateFirmware(context.Context, *SetAutoUpdateFirmwareRequest) (*SetAutoUpdateFirmwareResponse, error)
+}
+
+// UnimplementedGatewayServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedGatewayServiceServer struct {
+}
+
+func (*UnimplementedGatewayServiceServer) Create(ctx context.Context, req *CreateGatewayRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (*UnimplementedGatewayServiceServer) Get(ctx context.Context, req *GetGatewayRequest) (*GetGatewayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedGatewayServiceServer) Update(ctx context.Context, req *UpdateGatewayRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (*UnimplementedGatewayServiceServer) Delete(ctx context.Context, req *DeleteGatewayRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedGatewayServiceServer) List(ctx context.Context, req *ListGatewayRequest) (*ListGatewayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (*UnimplementedGatewayServiceServer) ListLocations(ctx context.Context, req *ListGatewayLocationsRequest) (*ListGatewayLocationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetStats(ctx context.Context, req *GetGatewayStatsRequest) (*GetGatewayStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStats not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetLastPing(ctx context.Context, req *GetLastPingRequest) (*GetLastPingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLastPing not implemented")
+}
+func (*UnimplementedGatewayServiceServer) StreamFrameLogs(req *StreamGatewayFrameLogsRequest, srv GatewayService_StreamFrameLogsServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamFrameLogs not implemented")
+}
+func (*UnimplementedGatewayServiceServer) Register(ctx context.Context, req *RegisterRequest) (*RegisterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetGwConfig(ctx context.Context, req *GetGwConfigRequest) (*GetGwConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGwConfig not implemented")
+}
+func (*UnimplementedGatewayServiceServer) UpdateGwConfig(ctx context.Context, req *UpdateGwConfigRequest) (*UpdateGwConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGwConfig not implemented")
+}
+func (*UnimplementedGatewayServiceServer) GetGwPwd(ctx context.Context, req *GetGwPwdRequest) (*GetGwPwdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGwPwd not implemented")
+}
+func (*UnimplementedGatewayServiceServer) SetAutoUpdateFirmware(ctx context.Context, req *SetAutoUpdateFirmwareRequest) (*SetAutoUpdateFirmwareResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetAutoUpdateFirmware not implemented")
 }
 
 func RegisterGatewayServiceServer(s *grpc.Server, srv GatewayServiceServer) {
