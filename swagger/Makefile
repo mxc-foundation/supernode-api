@@ -1,7 +1,7 @@
 .PHONY: all requirements
 
 all: requirements
-	@mkdir -p api
+	@echo "Build swagger.json"
 	@./gen.sh
 
 requirements:

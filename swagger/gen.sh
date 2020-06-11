@@ -6,7 +6,7 @@ GRPC_GW_PATH="${GRPC_GW_PATH}/../third_party/googleapis"
 PROTOBUF_PATH=`go list -f '{{ .Dir }}' github.com/golang/protobuf/ptypes`
 
 # generate the swagger definitions
-protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --swagger_out=json_names_for_fields=true:./api \
+protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --swagger_out=json_names_for_fields=true:. \
     lpwan-app-server/ui/application.proto \
     lpwan-app-server/ui/common.proto \
     lpwan-app-server/ui/device.proto \

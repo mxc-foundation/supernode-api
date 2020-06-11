@@ -2,29 +2,43 @@
 
 PROTOBUF_PATH=`go list -f '{{ .Dir }}' github.com/golang/protobuf/ptypes`
 
-protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-app-server/lpwan-server \
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
+    mxprotocol-server/lpwan-app-server/device_item.proto \
+    mxprotocol-server/lpwan-app-server/gateway_item.proto \
+    mxprotocol-server/lpwan-app-server/mining.proto \
+    mxprotocol-server/lpwan-app-server/server.proto \
+    mxprotocol-server/lpwan-app-server/settings.proto \
+    mxprotocol-server/lpwan-app-server/staking.proto \
+    mxprotocol-server/lpwan-app-server/topup.proto \
+    mxprotocol-server/lpwan-app-server/wallet.proto \
+    mxprotocol-server/lpwan-app-server/withdraw.proto
+
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
+    mxprotocol-server/lpwan-server/networkserver.proto
+
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-app-server/lpwan-server/as.proto
 
-protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-server/common \
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-server/common/common.proto
 
-protoc -I=../protobuf --go_out=plugins=grpc,paths=source_relative:./lpwan-app-server/mxprotocol-server \
+protoc -I=../protobuf --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-app-server/mxprotocol-server/device_item.proto \
     lpwan-app-server/mxprotocol-server/gateway_item.proto
 
-protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-server/geo \
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-server/geo/geo.proto
 
-protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-server/gw \
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-server/gw/gw.proto
 
-protoc -I=../protobuf --go_out=plugins=grpc,paths=source_relative:./lpwan-app-server/gateway \
+protoc -I=../protobuf --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-app-server/gateway/heartbeat.proto
 
-protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-server/nc \
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-server/nc/nc.proto
 
-protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-server/ns \
+protoc -I=../protobuf -I=${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-server/ns/ns.proto
 
 GRPC_GW_PATH=`go list -f '{{ .Dir }}' github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway`
@@ -32,7 +46,7 @@ GRPC_GW_PATH="${GRPC_GW_PATH}/../third_party/googleapis"
 
 
 # generate the gRPC code
-protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:./lpwan-app-server/ui/ \
+protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --go_out=plugins=grpc,paths=source_relative:. \
     lpwan-app-server/ui/application.proto \
     lpwan-app-server/ui/common.proto \
     lpwan-app-server/ui/device.proto \
@@ -58,7 +72,7 @@ protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --go_out=plugins=grpc
     lpwan-app-server/ui/withdraw.proto
 
 # generate the JSON interface code
-protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --grpc-gateway_out=logtostderr=true,paths=source_relative:./lpwan-app-server/ui \
+protoc -I=../protobuf -I${GRPC_GW_PATH} -I${PROTOBUF_PATH} --grpc-gateway_out=logtostderr=true,paths=source_relative:. \
     lpwan-app-server/ui/application.proto \
     lpwan-app-server/ui/common.proto \
     lpwan-app-server/ui/device.proto \
