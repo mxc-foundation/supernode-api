@@ -121,6 +121,170 @@
         ]
       }
     },
+    "/api/gateways/default-config/add": {
+      "post": {
+        "operationId": "InsertNewDefaultGatewayConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiInsertNewDefaultGatewayConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uiInsertNewDefaultGatewayConfigRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
+    "/api/gateways/default-config/batch-reset": {
+      "put": {
+        "operationId": "BatchResetDefaultGatewatConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiBatchResetDefaultGatewatConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uiBatchResetDefaultGatewatConfigRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
+    "/api/gateways/default-config/get": {
+      "get": {
+        "operationId": "GetDefaultGatewayConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiGetDefaultGatewayConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
+    "/api/gateways/default-config/reset": {
+      "put": {
+        "operationId": "ResetDefaultGatewatConfigByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiResetDefaultGatewatConfigByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uiResetDefaultGatewatConfigByIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
+    "/api/gateways/default-config/update": {
+      "put": {
+        "operationId": "UpdateDefaultGatewayConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/uiUpdateDefaultGatewayConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uiUpdateDefaultGatewayConfigRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
     "/api/gateways/getconfig/{gatewayId}": {
       "get": {
         "operationId": "GetGwConfig",
@@ -746,6 +910,22 @@
         }
       }
     },
+    "uiBatchResetDefaultGatewatConfigRequest": {
+      "type": "object",
+      "properties": {
+        "organizationList": {
+          "type": "string"
+        }
+      }
+    },
+    "uiBatchResetDefaultGatewatConfigResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
     "uiCreateGatewayRequest": {
       "type": "object",
       "properties": {
@@ -1025,6 +1205,14 @@
         }
       }
     },
+    "uiGetDefaultGatewayConfigResponse": {
+      "type": "object",
+      "properties": {
+        "defaultConfig": {
+          "type": "string"
+        }
+      }
+    },
     "uiGetGatewayResponse": {
       "type": "object",
       "properties": {
@@ -1105,6 +1293,28 @@
             "$ref": "#/definitions/uiPingRX"
           },
           "description": "Gateways and meta-data of reception."
+        }
+      }
+    },
+    "uiInsertNewDefaultGatewayConfigRequest": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "defaultConfig": {
+          "type": "string"
+        }
+      }
+    },
+    "uiInsertNewDefaultGatewayConfigResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
         }
       }
     },
@@ -1191,6 +1401,22 @@
         }
       }
     },
+    "uiResetDefaultGatewatConfigByIDRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "uiResetDefaultGatewatConfigByIDResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
     "uiSetAutoUpdateFirmwareRequest": {
       "type": "object",
       "properties": {
@@ -1221,6 +1447,28 @@
         "downlinkFrame": {
           "$ref": "#/definitions/uiDownlinkFrameLog",
           "description": "Contains a downlink frame."
+        }
+      }
+    },
+    "uiUpdateDefaultGatewayConfigRequest": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "defaultConfig": {
+          "type": "string"
+        }
+      }
+    },
+    "uiUpdateDefaultGatewayConfigResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
         }
       }
     },
